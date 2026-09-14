@@ -324,100 +324,6 @@
   .toast.show{transform:translate(-50%,0);opacity:1;}
   @media (max-width:860px){.contact-layout{grid-template-columns:1fr;}}
 
-  /* ---------- AI CHAT ASSISTANT ---------- */
-  .chat-launcher{
-    position:fixed;right:22px;bottom:22px;z-index:150;
-    width:62px;height:62px;border-radius:50%;border:none;cursor:pointer;
-    background:radial-gradient(circle at 30% 25%,#f0d35f,var(--gold) 55%,var(--gold-dark));
-    color:#171200;box-shadow:0 12px 30px rgba(0,0,0,.32);
-    display:grid;place-items:center;
-    transition:transform .3s ease,box-shadow .3s ease;
-  }
-  .chat-launcher:hover{transform:translateY(-3px) scale(1.06);box-shadow:0 18px 38px rgba(0,0,0,.4);}
-  .chat-launcher svg{width:30px;height:30px;}
-  .chat-launcher .ping{
-    position:absolute;inset:0;border-radius:50%;pointer-events:none;
-    border:2px solid var(--gold);animation:ring 2.4s infinite;
-  }
-  @keyframes ring{0%{transform:scale(1);opacity:.85;}100%{transform:scale(1.5);opacity:0;}}
-  .chat-panel{
-    position:fixed;right:22px;bottom:96px;z-index:150;
-    width:min(384px,calc(100vw - 40px));height:min(560px,calc(100vh - 150px));
-    display:flex;flex-direction:column;overflow:hidden;
-    background:var(--white);border:1px solid var(--line);border-radius:18px;
-    box-shadow:var(--shadow);
-    opacity:0;pointer-events:none;transform:translateY(16px) scale(.97);
-    transform-origin:bottom right;
-    transition:opacity .3s ease,transform .32s cubic-bezier(.22,.61,.36,1);
-  }
-  .chat-panel.open{opacity:1;pointer-events:auto;transform:none;}
-  .chat-head{
-    display:flex;align-items:center;gap:.7rem;padding:.8rem 1rem;flex:none;
-    background:linear-gradient(135deg,#232323,#000);color:#fff;
-    border-bottom:3px solid var(--gold);
-  }
-  .chat-head .ava{
-    width:42px;height:42px;border-radius:50%;flex:none;display:grid;place-items:center;
-    background:radial-gradient(circle at 30% 25%,#f0d35f,var(--gold-dark));
-    color:#171200;font-weight:800;font-size:1.05rem;
-  }
-  .chat-head b{display:block;font-size:.96rem;letter-spacing:.3px;}
-  .chat-head small{color:#9c9c9c;font-size:.72rem;display:flex;align-items:center;gap:.4rem;letter-spacing:.4px;}
-  .dot-online{width:8px;height:8px;border-radius:50%;background:#34c759;animation:pulse 2s infinite;}
-  .chat-close{
-    margin-left:auto;background:none;border:none;color:#fff;font-size:1.25rem;
-    cursor:pointer;line-height:1;padding:.2rem .35rem;opacity:.75;transition:opacity .2s,transform .2s;
-  }
-  .chat-close:hover{opacity:1;transform:rotate(90deg);}
-  .chat-body{flex:1;overflow-y:auto;padding:1rem;background:var(--paper);display:flex;flex-direction:column;gap:.7rem;}
-  .chat-body::-webkit-scrollbar{width:8px;}
-  .chat-body::-webkit-scrollbar-thumb{background:#d8d3c4;border-radius:8px;}
-  .msg{
-    max-width:86%;padding:.65rem .9rem;border-radius:14px;font-size:.92rem;line-height:1.5;
-    word-wrap:break-word;animation:msgIn .32s ease;
-  }
-  @keyframes msgIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
-  .msg.bot{background:#fff;border:1px solid var(--line);border-top-left-radius:4px;align-self:flex-start;}
-  .msg.user{background:var(--black);color:#fff;border-top-right-radius:4px;align-self:flex-end;}
-  .msg .chip-row{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.65rem;}
-  .msg .go-chip{
-    font:inherit;font-size:.78rem;font-weight:700;border:1px solid var(--gold);
-    color:var(--gold-dark);background:#fff;border-radius:999px;padding:.32rem .8rem;cursor:pointer;
-    transition:color .2s,background .2s,transform .2s;
-  }
-  .msg .go-chip:hover{background:var(--gold);color:#171200;transform:translateY(-2px);}
-  .typing{display:inline-flex;align-items:center;gap:4px;padding:.4rem .1rem;}
-  .typing i{width:7px;height:7px;border-radius:50%;background:#b9b9b9;animation:blink 1.1s infinite;}
-  .typing i:nth-child(2){animation-delay:.18s}.typing i:nth-child(3){animation-delay:.36s}
-  @keyframes blink{0%,80%,100%{opacity:.25;transform:translateY(0);}40%{opacity:1;transform:translateY(-3px);}}
-  .chat-foot{border-top:1px solid var(--line);background:#fff;flex:none;}
-  .chat-quick{display:flex;gap:.4rem;padding:.55rem .8rem 0;overflow-x:auto;scrollbar-width:none;}
-  .chat-quick::-webkit-scrollbar{display:none;}
-  .chat-quick button{
-    font:inherit;font-size:.74rem;font-weight:600;border:1px solid var(--line);
-    background:#fff;color:#4b4b4b;border-radius:999px;padding:.3rem .7rem;
-    white-space:nowrap;cursor:pointer;transition:border-color .2s,color .2s;
-  }
-  .chat-quick button:hover{border-color:var(--gold);color:var(--gold-dark);}
-  .chat-input{display:flex;gap:.5rem;padding:.7rem .8rem .85rem;}
-  .chat-input input{
-    flex:1;font:inherit;font-size:.92rem;border:1.5px solid var(--line);border-radius:999px;
-    padding:.55rem 1rem;outline:none;min-width:0;
-    transition:border-color .25s,box-shadow .25s;
-  }
-  .chat-input input:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(201,162,39,.12);}
-  .chat-input button{
-    flex:none;width:42px;height:42px;border-radius:50%;border:none;cursor:pointer;
-    background:var(--black);color:var(--gold);display:grid;place-items:center;
-    transition:transform .2s,background .2s;
-  }
-  .chat-input button:hover{transform:scale(1.08);}
-  .chat-input button svg{width:18px;height:18px;}
-  @media (max-width:520px){
-    .chat-panel{right:12px;bottom:88px;width:calc(100vw - 24px);height:min(560px,calc(100vh - 130px));}
-    .chat-launcher{right:16px;bottom:16px;width:56px;height:56px;}
-  }
-
   @media (prefers-reduced-motion:reduce){
     *{animation:none!important;transition:none!important;}
     .reveal{opacity:1;transform:none;}
@@ -759,31 +665,6 @@
   </div>
 </section>
 
-<!-- ================= AI CHAT ASSISTANT ================= -->
-<button class="chat-launcher" id="chatLauncher" onclick="toggleChat()" aria-label="Assistant CICCO">
-  <span class="ping"></span>
-  <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-</button>
-
-<div class="chat-panel" id="chatPanel">
-  <div class="chat-head">
-    <div class="ava">✦</div>
-    <div>
-      <b data-i18n="botName">Assistant CICCO</b>
-      <small><span class="dot-online"></span><span data-i18n="botStatus">En ligne</span></small>
-    </div>
-    <button class="chat-close" onclick="toggleChat()" aria-label="Fermer">✕</button>
-  </div>
-  <div class="chat-body" id="chatBody"></div>
-  <div class="chat-foot">
-    <div class="chat-quick" id="chatQuick"></div>
-    <div class="chat-input">
-      <input id="chatInput" type="text" autocomplete="off" data-i18n-placeholder="botPlaceholder" placeholder="Écrivez votre message…" onkeydown="if(event.key==='Enter')sendChat()">
-      <button onclick="sendChat()" aria-label="Envoyer"><svg viewBox="0 0 24 24"><path d="M22 2 11 13" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 2 15 22l-4-9-9-4z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-    </div>
-  </div>
-</div>
-
 <!-- ================= FOOTER ================= -->
 <footer>
   <div class="foot">
@@ -860,10 +741,6 @@
       contactSeatLabel: "Siège social",
       contactResponseNote: "Précisez autant que possible votre projet (type de travaux, localisation, échéance souhaitée) afin que nous puissions vous répondre avec précision.",
       toastEmpty: "Veuillez écrire une question avant d'envoyer.",
-      botName: "Assistant CICCO",
-      botStatus: "En ligne",
-      botPlaceholder: "Écrivez votre message…",
-      botGreeting: "Bonjour, je suis l'assistant virtuel de CICCO SAS. Posez-moi une question sur nos services, notre direction ou comment nous contacter, et je vous orienterai vers la bonne page.",
       homeTitle: "Présentation",
       homeGeneralTitle: "Présentation Générale",
       homeGeneral: "Les Cités Chrétiennes du Congo (CICCO en abrégé) est une société née dans le souci de répondre à l'élan de la croissance démographique et économique constaté depuis déjà plusieurs décennies, afin de résoudre les problèmes environnementaux qui en résultent.",
@@ -945,10 +822,6 @@
       contactSeatLabel: "Head office",
       contactResponseNote: "Please give as much detail as possible about your project (type of works, location, desired deadline) so that we can answer you accurately.",
       toastEmpty: "Please write a question before sending.",
-      botName: "CICCO Assistant",
-      botStatus: "Online",
-      botPlaceholder: "Type your message…",
-      botGreeting: "Hello, I'm the virtual assistant of CICCO SAS. Ask me about our services, our management or how to contact us, and I'll guide you to the right page.",
       homeTitle: "Presentation",
       homeGeneralTitle: "General Presentation",
       homeGeneral: "The Christian Cities of Congo (abbreviated CICCO) is a company born from the desire to respond to the momentum of demographic and economic growth observed over the past decades, in order to solve the resulting environmental problems.",
@@ -1030,10 +903,6 @@
       contactSeatLabel: "Sede social",
       contactResponseNote: "Detalle lo más posible su proyecto (tipo de obras, ubicación, plazo deseado) para poder responderle con precisión.",
       toastEmpty: "Escriba una pregunta antes de enviar.",
-      botName: "Asistente CICCO",
-      botStatus: "En línea",
-      botPlaceholder: "Escriba su mensaje…",
-      botGreeting: "Hola, soy el asistente virtual de CICCO SAS. Pregúnteme por nuestros servicios, nuestra dirección o cómo contactarnos, y le orientaré hacia la página adecuada.",
       homeTitle: "Presentación",
       homeGeneralTitle: "Presentación General",
       homeGeneral: "Las Ciudades Cristianas del Congo (CICCO, por sus siglas) es una sociedad nacida para responder al impulso del crecimiento demográfico y económico observado desde hace varias décadas, con el fin de resolver los problemas medioambientales que de ello se derivan.",
@@ -1115,10 +984,6 @@
       contactSeatLabel: "Sede sociale",
       contactResponseNote: "Dettagliate il più possibile il vostro progetto (tipo di lavori, posizione, scadenza desiderata) per poter rispondere con precisione.",
       toastEmpty: "Scrivi una domanda prima di inviare.",
-      botName: "Assistente CICCO",
-      botStatus: "Online",
-      botPlaceholder: "Scrivi il tuo messaggio…",
-      botGreeting: "Ciao, sono l'assistente virtuale di CICCO SAS. Chiedimi dei nostri servizi, della nostra direzione o come contattarci e ti guiderò verso la pagina giusta.",
       homeTitle: "Presentazione",
       homeGeneralTitle: "Presentazione Generale",
       homeGeneral: "Le Città Cristiane del Congo (abbreviate CICCO) è una società nata per rispondere allo slancio della crescita demografica ed economica osservata ormai da diversi decenni, al fine di risolvere i problemi ambientali che ne derivano.",
@@ -1200,10 +1065,6 @@
       contactSeatLabel: "Sede social",
       contactResponseNote: "Detalhe o máximo possível o seu projeto (tipo de obras, localização, prazo desejado) para que possamos responder com precisão.",
       toastEmpty: "Escreva uma pergunta antes de enviar.",
-      botName: "Assistente CICCO",
-      botStatus: "Online",
-      botPlaceholder: "Escreva a sua mensagem…",
-      botGreeting: "Olá, sou o assistente virtual da CICCO SAS. Pergunte-me sobre os nossos serviços, a nossa direção ou como contactar-nos e irei orientá-lo para a página certa.",
       homeTitle: "Apresentação",
       homeGeneralTitle: "Apresentação Geral",
       homeGeneral: "As Cidades Cristãs do Congo (CICCO, na sigla) é uma sociedade nascida para responder ao impulso do crescimento demográfico e económico observado há várias décadas, a fim de resolver os problemas ambientais que dele resultam.",
@@ -1285,10 +1146,6 @@
       contactSeatLabel: "Maatschappelijke zetel",
       contactResponseNote: "Geef zo veel mogelijk details over uw project (type werken, locatie, gewenste deadline) zodat we u nauwkeurig kunnen antwoorden.",
       toastEmpty: "Schrijf eerst een vraag voordat u verzendt.",
-      botName: "CICCO Assistent",
-      botStatus: "Online",
-      botPlaceholder: "Typ uw bericht…",
-      botGreeting: "Hallo, ik ben de virtuele assistent van CICCO SAS. Vraag me over onze diensten, onze directie of hoe u ons kunt contacteren en ik leid u naar de juiste pagina.",
       homeTitle: "Presentatie",
       homeGeneralTitle: "Algemene Presentatie",
       homeGeneral: "De Christelijke Steden van Congo (afgekort CICCO) is een bedrijf dat is ontstaan uit de wens om te reageren op de demografische en economische groei die al tientallen jaren wordt waargenomen, om de daaruit voortvloeiende milieuproblemen op te lossen.",
@@ -1355,7 +1212,6 @@
       if(t[key] !== undefined) el.setAttribute('placeholder', t[key]);
     });
     populateContactTopics(lang);
-    if(typeof updateChatUi === 'function') updateChatUi();
     document.documentElement.lang = lang;
     document.getElementById('langSelect').value = lang;
     try{ localStorage.setItem('cicco-lang', lang); }catch(e){}
@@ -1508,357 +1364,6 @@
     el._t = setTimeout(() => el.classList.remove('show'), 3400);
   }
 
-  // ---------- AI CHAT ASSISTANT ----------
-  const LANGNAME = {fr:'French', en:'English', es:'Spanish', it:'Italian', pt:'Portuguese', nl:'Dutch'};
-  const QUICK = {
-    fr: [
-      {label:'Nos services', q:'Quels sont vos services ?'},
-      {label:'Où sommes-nous ?', q:'Où se trouve le siège de CICCO ?'},
-      {label:'La direction', q:'Qui dirige CICCO ?'},
-      {label:'Demander un devis', q:'Je souhaite demander un devis pour réaliser des travaux.'},
-      {label:'Contact', q:'Comment puis-je vous contacter ?'}
-    ],
-    en: [
-      {label:'Our services', q:'What services do you offer?'},
-      {label:'Where are you?', q:'Where is CICCO located?'},
-      {label:'Management', q:'Who runs CICCO?'},
-      {label:'Request a quote', q:'I would like to request a quote for construction works.'},
-      {label:'Contact', q:'How can I contact you?'}
-    ],
-    es: [
-      {label:'Nuestros servicios', q:'¿Qué servicios ofrecen?'},
-      {label:'¿Dónde están?', q:'¿Dónde se encuentra CICCO?'},
-      {label:'La dirección', q:'¿Quién dirige CICCO?'},
-      {label:'Pedir presupuesto', q:'Quiero solicitar un presupuesto para realizar obras.'},
-      {label:'Contacto', q:'¿Cómo puedo contactarles?'}
-    ],
-    it: [
-      {label:'I nostri servizi', q:'Quali servizi offrite?'},
-      {label:'Dove siete?', q:'Dove si trova CICCO?'},
-      {label:'La direzione', q:'Chi dirige CICCO?'},
-      {label:'Richiedi un preventivo', q:'Vorrei richiedere un preventivo per eseguire dei lavori.'},
-      {label:'Contatto', q:'Come posso contattarvi?'}
-    ],
-    pt: [
-      {label:'Os nossos serviços', q:'Que serviços oferecem?'},
-      {label:'Onde estão?', q:'Onde fica a CICCO?'},
-      {label:'A direção', q:'Quem dirige a CICCO?'},
-      {label:'Pedir orçamento', q:'Gostaria de solicitar um orçamento para realizar obras.'},
-      {label:'Contacto', q:'Como posso contactar-vos?'}
-    ],
-    nl: [
-      {label:'Onze diensten', q:'Welke diensten biedt u aan?'},
-      {label:'Waar bent u?', q:'Waar bevindt CICCO zich?'},
-      {label:'De directie', q:'Wie leidt CICCO?'},
-      {label:'Offerte aanvragen', q:'Ik wil graag een offerte voor bouwwerken aanvragen.'},
-      {label:'Contact', q:'Hoe kan ik u contacteren?'}
-    ]
-  };
-
-  const FALLBACK = {
-    fr: [
-      {re:/bonjour|bonsoir|salut|hello|hey|coucou|bonjou/i,
-       a:"Bonjour ! Je suis l'assistant virtuel de CICCO. Comment puis-je vous aider ?"},
-      {re:/service|activit|construction|batiment|route|elec|entretien|nettoyage|logement|chantier|travaux|devis|prix|tarif|bât|élec/i,
-       a:"CICCO intervient dans la construction générale (architecture et urbanisme, routes, maisons haut standing, cités modernes et logements sociaux), les travaux d'entretien et d'aménagement, les travaux d'électricité, la logistique et l'équipement, ainsi que les services connexes (transport, agence de voyage). {{go:about}} Pour un devis personnalisé, utilisez la page contact. {{go:contact}}"},
-      {re:/adresse|si[èe]ge|localis|ville de|quelle ville|o[uù] se trouve/i,
-       a:"Notre siège social se trouve en République Démocratique du Congo, avenue Nyangwe n° 277, C/Lingwala, Ville de Kinshasa. {{go:contact}}"},
-      {re:/contact|telephone|num[ée]ro|e-?mail|whatsapp|appeler|joindre|appel/i,
-       a:"Vous pouvez nous joindre au (+243) 992 437 260 ou par e-mail à ciccosas@gmail.com. Vous pouvez aussi envoyer votre question directement depuis la page Contact. {{go:contact}}"},
-      {re:/direct|pr[ée]sident|direction|equipe|chef|qui dirige|qui commande/i,
-       a:"Notre équipe dirigeante : Dieudonné OKONGO OTETE (Président), Carlos PAREDES (Directeur Technique), Rachel TASUMBU (Directrice Administrative & Financière) et Jonathan LUKUNA KALONJI (Chef des Chantiers). {{go:direction}}"},
-      {re:/horaire|heure|ouvert|quand|jour de|jours de/i,
-       a:"Nos bureaux sont ouverts du lundi au vendredi, de 8h30 à 17h30. {{go:contact}}"},
-      {re:/partenaire|fournisseur|partenariat|soci[ée]/i,
-       a:"Nos principaux partenaires sont Meridiantarget et MICROPLUS GERMANY. Pour un partenariat ou une fourniture, contactez-nous. {{go:contact}}"},
-      {re:/merci|great|super|parfait|xie xie/i,
-       a:"Avec plaisir ! N'hésitez pas si vous avez d'autres questions."},
-      {re:/^/i,
-       a:"Voici les pages qui pourront vous aider : {{go:about}} {{go:direction}} {{go:contact}} Ecrivez-moi aussi vos questions en toutes lettres."}
-    ],
-    en: [
-      {re:/hello|hi|hey|good morning|good afternoon|greetings/i,
-       a:"Hello! I'm the virtual assistant of CICCO. How can I help you?"},
-      {re:/service|activit|construction|building|road|electri|maintenance|cleaning|housing|works|quote|price|cost|rate/i,
-       a:"CICCO carries out general construction (architecture and urban planning, roads, high-end homes, modern cities and social housing), maintenance and development works, electrical works, logistics and equipment, as well as related services (transport, travel agency). {{go:about}} For a personalised quote, please use the contact page. {{go:contact}}"},
-      {re:/address|where.*(located|based)|office.*located|what city|in which city/i,
-       a:"Our head office is in the Democratic Republic of the Congo, 277 Nyangwe Avenue, C/Lingwala, Kinshasa. {{go:contact}}"},
-      {re:/contact|phone|number|e-?mail|whatsapp|call|reach/i,
-       a:"You can reach us at (+243) 992 437 260 or by e-mail at ciccosas@gmail.com. You can also submit your question straight from the Contact page. {{go:contact}}"},
-      {re:/director|president|management|team|lead|who runs|who leads|who manages/i,
-       a:"Our executive team: Dieudonné OKONGO OTETE (President), Carlos PAREDES (Technical Director), Rachel TASUMBU (Administrative & Financial Director) and Jonathan LUKUNA KALONJI (Site Manager). {{go:direction}}"},
-      {re:/hours|open|when|operating|available/i,
-       a:"Our offices are open Monday to Friday, from 8:30 am to 5:30 pm. {{go:contact}}"},
-      {re:/partner|supplier|partnership/i,
-       a:"Our main partners are Meridiantarget and MICROPLUS GERMANY. For a partnership or supplying, please contact us. {{go:contact}}"},
-      {re:/thanks|thank you|cheers|perfect|great/i,
-       a:"You're welcome! Feel free to ask if you have any other questions."},
-      {re:/^/i,
-       a:"Here are the pages that can help you: {{go:about}} {{go:direction}} {{go:contact}} Also write your question to me in full."}
-    ],
-    es: [
-      {re:/hola|buenos dias|buenas tardes|hey|saludos/i,
-       a:"¡Hola! Soy el asistente virtual de CICCO. ¿En qué puedo ayudarle?"},
-      {re:/servicio|activit|construcci|edific|carretera|electr|mantenimiento|limpieza|vivienda|obra|presupuesto|precio|tarifa/i,
-       a:"CICCO realiza construcción general (arquitectura y urbanismo, carreteras, viviendas de alto nivel, ciudades modernas y vivienda social), trabajos de mantenimiento y acondicionamiento, trabajos eléctricos, logística y equipamiento, así como servicios conexos (transporte, agencia de viajes). {{go:about}} Para un presupuesto personalizado, use la página de contacto. {{go:contact}}"},
-      {re:/direcci|d[óo]nde.*(encuentra|est[aá])|sede|ubic/i,
-       a:"Nuestra sede social está en la República Democrática del Congo, avenida Nyangwe n° 277, C/Lingwala, ciudad de Kinshasa. {{go:contact}}"},
-      {re:/contacto|tel[ée]fono|n[uú]mero|correo|whatsapp|llamar/i,
-       a:"Puede contactarnos al (+243) 992 437 260 o por correo a ciccosas@gmail.com. También puede enviar su pregunta desde la página de contacto. {{go:contact}}"},
-      {re:/director|presidente|direcci|equipo|qui[eé]n dirige|qui[eé]n lidera/i,
-       a:"Nuestro equipo directivo: Dieudonné OKONGO OTETE (Presidente), Carlos PAREDES (Director Técnico), Rachel TASUMBU (Directora Administrativa y Financiera) y Jonathan LUKUNA KALONJI (Jefe de Obras). {{go:direction}}"},
-      {re:/horario|hora|abierto|cuando|c[uú]ando/i,
-       a:"Nuestras oficinas abren de lunes a viernes, de 8:30 a 17:30. {{go:contact}}"},
-      {re:/socio|proveedor|partner/i,
-       a:"Nuestros principales socios son Meridiantarget y MICROPLUS GERMANY. Para una colaboración o suministro, contáctenos. {{go:contact}}"},
-      {re:/gracias|perfecto/i,
-       a:"¡Con gusto! No dude en preguntar si tiene otras dudas."},
-      {re:/^/i,
-       a:"Estas son las páginas que pueden ayudarle: {{go:about}} {{go:direction}} {{go:contact}} También puede escribir su pregunta completa."}
-    ],
-    it: [
-      {re:/ciao|buongiorno|buonasera|salve|hey/i,
-       a:"Ciao! Sono l'assistente virtuale di CICCO. Come posso aiutarti?"},
-      {re:/servizi|attivit|costruz|edific|strada|elettric|manutenzione|pulizia|alloggi|opera|preventiv|prezzo|tariff/i,
-       a:"CICCO svolge costruzione generale (architettura e urbanistica, strade, case di alto livello, città moderne e alloggi sociali), lavori di manutenzione e sistemazione, lavori elettrici, logistica e attrezzature, oltre a servizi correlati (trasporto, agenzia di viaggi). {{go:about}} Per un preventivo personalizzato, usa la pagina contatti. {{go:contact}}"},
-      {re:/dove.*(si trova|trovat)|sede|ubic|indirizzo/i,
-       a:"La nostra sede si trova nella Repubblica Democratica del Congo, Avenue Nyangwe n° 277, C/Lingwala, Kinshasa. {{go:contact}}"},
-      {re:/contatt|telefono|numero|e-?mail|whatsapp|chiam|raggiung/i,
-       a:"Puoi contattarci al (+243) 992 437 260 o via e-mail a ciccosas@gmail.com. Puoi anche inviare la tua domanda dalla pagina contatti. {{go:contact}}"},
-      {re:/direttor|presidente|direzion|team|che guida|chi dirige|chi comanda/i,
-       a:"Il nostro team direttivo: Dieudonné OKONGO OTETE (Presidente), Carlos PAREDES (Direttore Tecnico), Rachel TASUMBU (Direttrice Amministrativa e Finanziaria) e Jonathan LUKUNA KALONJI (Capo dei Cantieri). {{go:direction}}"},
-      {re:/orari|ora|aperto|quando/i,
-       a:"I nostri uffici sono aperti da lunedì a venerdì, dalle 8:30 alle 17:30. {{go:contact}}"},
-      {re:/partner|fornitore|socio/i,
-       a:"I nostri principali partner sono Meridiantarget e MICROPLUS GERMANY. Per una partnership o fornitura, contattaci. {{go:contact}}"},
-      {re:/grazie|perfetto/i,
-       a:"Di nulla! Chiedi pure se hai altre domande."},
-      {re:/^/i,
-       a:"Queste sono le pagine che possono aiutarti: {{go:about}} {{go:direction}} {{go:contact}} Scrivimi anche la tua domanda per intero."}
-    ],
-    pt: [
-      {re:/ol[aá]|bom dia|boa tarde|hey|sauda/i,
-       a:"Olá! Sou o assistente virtual da CICCO. Em que posso ajudar?"},
-      {re:/servi|activ|constru|edif|estrada|electr|manuten|limpeza|habita|obra|or\s*a?mento|pre[çc]o|tarifa/i,
-       a:"A CICCO realiza construção geral (arquitetura e urbanismo, estradas, casas de alto padrão, cidades modernas e habitação social), trabalhos de manutenção e arranjos, trabalhos elétricos, logística e equipamentos, além de serviços conexos (transporte, agência de viagens). {{go:about}} Para um orçamento personalizado, utilize a página de contacto. {{go:contact}}"},
-      {re:/morada|endere|onde.*(fica|encontra)|sede|localiz/i,
-       a:"A nossa sede fica na República Democrática do Congo, Avenida Nyangwe n° 277, C/Lingwala, cidade de Kinshasa. {{go:contact}}"},
-      {re:/contacto|telefone|n[uú]mero|e-?mail|whatsapp|ligar/i,
-       a:"Pode contactar-nos pelo (+243) 992 437 260 ou por e-mail para ciccosas@gmail.com. Também pode enviar a sua pergunta pela página de contacto. {{go:contact}}"},
-      {re:/diretor|presidente|dire[çc][ãa]o|equipa|quem dirige/i,
-       a:"A nossa equipa dirigente: Dieudonné OKONGO OTETE (Presidente), Carlos PAREDES (Diretor Técnico), Rachel TASUMBU (Diretora Administrativa e Financeira) e Jonathan LUKUNA KALONJI (Chefe de Obras). {{go:direction}}"},
-      {re:/hor[áa]rio|hora|aberto|quando/i,
-       a:"Os nossos escritórios abrem de segunda a sexta, das 8h30 às 17h30. {{go:contact}}"},
-      {re:/parceiro|fornecedor|parceria/i,
-       a:"Os nossos principais parceiros são a Meridiantarget e a MICROPLUS GERMANY. Para uma parceria ou fornecimento, contacte-nos. {{go:contact}}"},
-      {re:/obrigado|obrigada|perfeito/i,
-       a:"De nada! Pergunte à vontade se tiver outras questões."},
-      {re:/^/i,
-       a:"Estas são as páginas que podem ajudar: {{go:about}} {{go:direction}} {{go:contact}} Escreva também a sua pergunta por extenso."}
-    ],
-    nl: [
-      {re:/hallo|hoi|goedemorgen|goedemiddag|hey/i,
-       a:"Hallo! Ik ben de virtuele assistent van CICCO. Waarmee kan ik u helpen?"},
-      {re:/dienst|activiteit|bouw|gebouw|weg|elektric|onderhoud|schoonmaak|woning|werken|offerte|prijs|tarief/i,
-       a:"CICCO voert algemene bouw uit (architectuur en stedenbouw, wegen, hoogwaardige woningen, moderne steden en sociale woningen), onderhouds- en inrichtingswerken, elektriciteitswerken, logistiek en uitrusting, plus aanverwante diensten (vervoer, reisbureau). {{go:about}} Voor een offerte op maat kunt u de contactpagina gebruiken. {{go:contact}}"},
-      {re:/adres|waar.*(gevestigd|bevindt|zit)|hoofdzetel|locatie/i,
-       a:"Onze maatschappelijke zetel ligt in de Democratische Republiek Congo, Nyangwe Avenue nr. 277, C/Lingwala, Kinshasa. {{go:contact}}"},
-      {re:/contact|telefoon|nummer|e-?mail|whatsapp|bellen|bereiken/i,
-       a:"U kunt ons bereiken op (+243) 992 437 260 of per e-mail op ciccosas@gmail.com. U kunt uw vraag ook rechtstreeks via de contactpagina versturen. {{go:contact}}"},
-      {re:/directeur|voorzitter|directie|team|wie leidt|wie stuurt/i,
-       a:"Ons bestuursteam: Dieudonné OKONGO OTETE (Voorzitter), Carlos PAREDES (Technisch Directeur), Rachel TASUMBU (Administratief en Financieel Directeur) en Jonathan LUKUNA KALONJI (Chef der Werken). {{go:direction}}"},
-      {re:/uren|open|wanneer|openings/i,
-       a:"Onze kantoren zijn open van maandag tot vrijdag, van 8:30 tot 17:30. {{go:contact}}"},
-      {re:/partner|leverancier|samenwerking/i,
-       a:"Onze belangrijkste partners zijn Meridiantarget en MICROPLUS GERMANY. Voor een samenwerking of levering kunt u contact opnemen. {{go:contact}}"},
-      {re:/dank|bedankt|perfect/i,
-       a:"Graag gedaan! Stel gerust als u nog vragen heeft."},
-      {re:/^/i,
-       a:"Dit zijn de pagina's die u kunnen helpen: {{go:about}} {{go:direction}} {{go:contact}} Schrijf uw vraag ook volledig uit."}
-    ]
-  };
-
-  let chatOpen = false;
-  let chatGreeted = false;
-
-  function toggleChat(force){
-    const panel = document.getElementById('chatPanel');
-    chatOpen = typeof force === 'boolean' ? force : !chatOpen;
-    panel.classList.toggle('open', chatOpen);
-    if(chatOpen){
-      if(!chatGreeted){ chatGreeted = true; addMsg(botMsg('botGreeting'), 'bot'); }
-      setTimeout(() => document.getElementById('chatInput').focus(), 120);
-    }
-  }
-
-  function botMsg(key){
-    const t = translations[document.documentElement.lang] || translations.fr;
-    return t[key] !== undefined ? t[key] : '';
-  }
-
-  function updateChatUi(){
-    const lang = document.documentElement.lang || 'fr';
-    const chips = QUICK[lang] || QUICK.fr;
-    document.getElementById('chatQuick').innerHTML = chips
-      .map((c, i) => '<button type="button" onclick="quickAsk(' + i + ')">' + c.label + '</button>')
-      .join('');
-  }
-
-  function quickAsk(i){
-    if(!chatOpen) toggleChat(true);
-    const chips = QUICK[document.documentElement.lang] || QUICK.fr;
-    const c = chips[i];
-    if(!c) return;
-    document.getElementById('chatInput').value = c.q;
-    sendChat();
-  }
-
-  function addMsg(raw, who){
-    if(!raw) return;
-    const body = document.getElementById('chatBody');
-    const div = document.createElement('div');
-    div.className = 'msg ' + who;
-    const textNode = document.createElement('div');
-    textNode.textContent = raw.replace(/\{\{go:[a-z]+\}\}/g, '').trim();
-    div.appendChild(textNode);
-    const pages = [];
-    let m;
-    const goRe = /\{\{go:([a-z]+)\}\}/g;
-    while((m = goRe.exec(raw)) !== null){
-      if(['home','about','direction','contact'].indexOf(m[1]) !== -1 && pages.indexOf(m[1]) === -1){
-        pages.push(m[1]);
-      }
-    }
-    if(pages.length){
-      const row = document.createElement('div');
-      row.className = 'chip-row';
-      const t = translations[document.documentElement.lang] || translations.fr;
-      pages.forEach(pg => {
-        const key = 'nav' + pg.charAt(0).toUpperCase() + pg.slice(1);
-        const b = document.createElement('button');
-        b.className = 'go-chip';
-        b.textContent = t[key] !== undefined ? t[key] : pg;
-        b.onclick = function(){ toggleChat(false); showPage(pg); };
-        row.appendChild(b);
-      });
-      div.appendChild(row);
-    }
-    body.appendChild(div);
-    body.scrollTop = body.scrollHeight;
-  }
-
-  function showTyping(){
-    const div = document.createElement('div');
-    div.className = 'msg bot';
-    div.innerHTML = '<div class="typing"><i></i><i></i><i></i></div>';
-    document.getElementById('chatBody').appendChild(div);
-    document.getElementById('chatBody').scrollTop = document.getElementById('chatBody').scrollHeight;
-    return div;
-  }
-
-  function sendChat(){
-    const inp = document.getElementById('chatInput');
-    const q = inp.value.trim();
-    if(!q) return;
-    inp.value = '';
-    addMsg(q, 'user');
-    respond(q);
-  }
-
-  async function respond(q){
-    const active = document.querySelector('nav.main button.active');
-    const page = active ? active.dataset.page : 'home';
-    const typing = showTyping();
-    const ai = await askAI(q, page);
-    typing.remove();
-    addMsg(ai ? ai : fallbackReply(q), 'bot');
-  }
-
-  function aiSystem(lang){
-    return [
-      'You are the customer-assistance AI of CICCO SAS (Les Cités Chrétiennes du Congo), a construction and works company (BTP) based in Kinshasa, DR Congo.',
-      'Facts: Head office at Avenue Nyangwe n°277, C/Lingwala, Kinshasa, DRC. Phone +243 992 437 260. Email ciccosas@gmail.com. RCCM KNG/RCCM/17-B-01295.',
-      'Activities: general construction (architecture & urbanism, roads, high-end homes, modern cities and social housing); maintenance & development (cleaning, green spaces); electrical works (public lighting, urban & rural electrification); logistics & equipment (hardware, furnishing, surveillance); related services (travel agency & tourism, transport).',
-      'Partners: Meridiantarget, MICROPLUS GERMANY.',
-      'Management: President Dieudonné OKONGO OTETE; Technical Director Carlos PAREDES; Administrative & Financial Director Rachel TASUMBU; Site Manager Jonathan LUKUNA KALONJI.',
-      'Opening hours: Monday-Friday 8:30-17:30.',
-      'Website pages: home (presentation), about (vision, mission, activities), direction (management team), contact (contact form).',
-      'Be concise, warm and professional. Answer in ' + (LANGNAME[lang] || 'English') + '.',
-      'If your answer relates to a specific website page, end your reply with {{go:pageName}} where pageName is home, about, direction or contact. Use at most two tags.'
-    ].join('\n');
-  }
-
-  async function askAI(q, page){
-    const lang = document.documentElement.lang || 'fr';
-    const system = aiSystem(lang);
-    const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), 26000);
-    try{
-      const res = await fetch('https://text.pollinations.ai/openai', {
-        method: 'POST',
-        signal: ctrl.signal,
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({
-          messages: [
-            {role: 'system', content: system},
-            {role: 'user', content: 'Current website page: ' + page + '. Question: ' + q}
-          ],
-          model: 'openai',
-          private: true
-        })
-      });
-      if(!res.ok) throw new Error('http ' + res.status);
-      const text = await res.text();
-      const ai = parsePollinations(text);
-      return ai ? cleanAI(ai) : null;
-    }catch(e){
-      return null;
-    }finally{
-      clearTimeout(timer);
-    }
-  }
-
-  function parsePollinations(text){
-    const t = String(text || '').trim();
-    try{
-      const j = JSON.parse(t);
-      const c = j.choices && j.choices[0] && j.choices[0].message;
-      if(c && c.content) return c.content;
-    }catch(e){}
-    if(t.indexOf('data:') !== -1){
-      let out = '';
-      t.split('\n').forEach(line => {
-        if(line.indexOf('data:') === 0){
-          const payload = line.slice(5).trim();
-          if(payload === '[DONE]') return;
-          try{
-            const j = JSON.parse(payload);
-            const d = j.choices && j.choices[0] && j.choices[0].delta;
-            if(d && d.content) out += d.content;
-          }catch(e){}
-        }
-      });
-      if(out) return out;
-    }
-    return null;
-  }
-
-  function cleanAI(t){
-    t = String(t || '').replace(/[*_#`>]/g, '').replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
-    if(t.length > 1100) t = t.slice(0, 1100).trim();
-    return t;
-  }
-
-  function fallbackReply(q){
-    const lang = document.documentElement.lang || 'fr';
-    const rules = FALLBACK[lang] || FALLBACK.fr;
-    for(let i = 0; i < rules.length; i++){
-      if(rules[i].re.test(q)){
-        return rules[i].a;
-      }
-    }
-    return rules[rules.length - 1].a;
-  }
 
   window.addEventListener('load', initLang);
 </script>
